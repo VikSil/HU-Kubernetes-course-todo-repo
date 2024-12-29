@@ -4,3 +4,4 @@ resources:
   - manifests/todo_app/deployment.yaml
   - manifests/todo_app/service.yaml
   - manifests/todo_app/ingress.yaml
+  - manifests/todo_app/persistentvolumeclaim.yaml

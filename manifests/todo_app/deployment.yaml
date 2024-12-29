@@ -12,9 +12,20 @@ spec:
       labels:
         app: todo-app
     spec:
+      volumes:
+        - name: todo-app-volume
+          persistentVolumeClaim:
+            claimName: todo-app-volume-claim
       containers:
         - name: todo-app
           image: PROJECT/IMAGE_APP
           env:
           - name: PORT
             value: "8088"
+          # uncomment to set timeout between image downloads (in seconds)
+          # - name: TIMEOUT
+          #   value: "25"
+          volumeMounts:
+          - name: todo-app-volume
+            mountPath: /usr/local/files
+            subPath: postgres
