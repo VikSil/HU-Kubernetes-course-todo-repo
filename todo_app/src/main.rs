@@ -35,16 +35,39 @@ async fn index() -> impl IntoResponse {
     <html>
     <head>
         <title>Todo App</title>
-        <style>.center {
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
+        <style>
+            .center-image {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            div {
+                text-align: center;
+                margin: 10px 0px;
+            }
+            ul {
+                display: inline-block;
+                text-align: left;
+                margin: 0px;
             }
         </style>
     </head>
     <body>
-
-        <img src="/usr/local/files/picture.jpg" alt="Random picture" width="300" class="center">
+        <div>
+            <img src="/usr/local/files/picture.jpg" alt="Random picture" width="300" class="center-image">
+        </div>
+        <div>
+            <form>
+                <input type="text" maxlength="140">
+                <input type="submit" value="Create TODO">
+            </form>
+        </div>
+        <div>
+            <ul>
+                <li>TODO 1</li>
+                <li>TODO 1</li>
+            </ul>
+        </div>        
     </body>
     </html>
 "#
@@ -87,7 +110,7 @@ async fn replace_image() -> Result<(), Error> {
 
     let timeout: u64 = match env::var("TIMEOUT") {
         Ok(val) => val.parse::<u64>().unwrap(),
-        Err(_e) => 3600, // by default serve a new image every hour
+        Err(_e) => 25, // by default serve a new image every hour
     };
 
     let now = SystemTime::now();
